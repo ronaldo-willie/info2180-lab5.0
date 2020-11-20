@@ -1,13 +1,15 @@
 "use strict";
-function countrySearch(){
+window.onload = function countrySearch(){
     var query = document.getElementById("country").value;
     var httprequest = new XMLHttpRequest();
-    httprequest.onreadystatechange = function()
+
+    document.getElementById("lookup").addEventListener("click", function{
+        httprequest.onreadystatechange = function()
     {
         if (this.readyState == 4 && this.status == 200)
         {
             document.getElementById("result").innerHTML = this.responseText;
-            alert(this.responseText.replace(/<\/?[^>]+(>|$)/g, " ")); // Regular Expression to remove HTML Tags 
+            alert(this.responseText.replace(/<\/?[^>]+(>|$)/g, " ")); 
         }
     };
     
@@ -19,6 +21,9 @@ function countrySearch(){
     {
         var url = "world.php?country="+query;
     }
+
+    });
+    
     
     httprequest.open("GET",url,true);
     httprequest.send("");
